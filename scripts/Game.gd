@@ -5,12 +5,14 @@ const Person = preload("res://scripts/Person.gd")
 const CREDIT_MIN = 200
 const CREDIT_MAX = 800
 
-onready var tabs = $"Tabs"
+onready var auto_advance_button = $"Output/Auto Advance"
+onready var auto_advance_progress = $"Output/Auto Advance Progress"
 onready var display_container = $"Output/Main"
 onready var display = $"Output/Main/Text"
+onready var main_info = $"Tabs/Main/Info"
 onready var person_info = $"Output/Info"
 onready var prefab_company = preload("res://scenes/Company.tscn")
-onready var main_info = $"Tabs/Main/Info"
+onready var tabs = $"Tabs"
 
 var company_cost = 10000
 var loan_amount = 50000
@@ -27,6 +29,7 @@ var people = []
 
 var auto_advance = false
 var elapsed = 0.0
+var sec_per_day = 5
 
 class Loan:
         const APR_MIN = 0.03
@@ -57,11 +60,13 @@ class Loan:
 func _process(delta):
         main_info.text = "Money: $" + comma_sep(money) + "\n"
         main_info.text += "Loans: $" + comma_sep(total_loans()) + " (" + comma_sep(len(loans)) + ")\n"
-        if auto_advance:
-                elapsed += delta
-                if elapsed > 5.0:
-                        elapsed -= 5.0
-                        end_day()
+        if not auto_advance:
+                return
+        elapsed += delta
+        auto_advance_progress.value = elapsed / sec_per_day
+        if elapsed > sec_per_day:
+                elapsed -= sec_per_day
+                end_day()
 
 func _ready():
         print("Output: ", $"Output")
@@ -210,3 +215,8 @@ func _on_Next_Month_pressed():
 
 func _on_Auto_Advance_toggled(button_pressed):
         auto_advance = button_pressed
+        #auto_advance_button.disable = not auto_advance
+
+func _on_HScrollBar_value_changed(value):
+        sec_per_day = value + 1
+        auto_advance_button.text = "AUTO ADVANCE (%ds/day)" % sec_per_day

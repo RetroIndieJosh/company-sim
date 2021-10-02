@@ -66,12 +66,12 @@ margin_bottom = 720.0
 
 [node name="Main" type="ScrollContainer" parent="Output"]
 margin_right = 300.0
-margin_bottom = 307.0
+margin_bottom = 151.0
 size_flags_vertical = 3
 
 [node name="Text" type="Label" parent="Output/Main"]
 margin_right = 300.0
-margin_bottom = 307.0
+margin_bottom = 151.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -79,34 +79,52 @@ custom_fonts/font = ExtResource( 2 )
 autowrap = true
 
 [node name="Info" type="Label" parent="Output"]
-margin_top = 311.0
+margin_top = 155.0
 margin_right = 300.0
-margin_bottom = 618.0
+margin_bottom = 307.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
 
 [node name="Next Day" type="Button" parent="Output"]
-margin_top = 622.0
+margin_top = 311.0
 margin_right = 300.0
-margin_bottom = 652.0
+margin_bottom = 341.0
 custom_fonts/font = ExtResource( 1 )
 text = "NEXT DAY"
 
 [node name="Next Month" type="Button" parent="Output"]
-margin_top = 656.0
+margin_top = 345.0
 margin_right = 300.0
-margin_bottom = 686.0
+margin_bottom = 375.0
 custom_fonts/font = ExtResource( 1 )
 text = "NEXT MONTH"
 
 [node name="Auto Advance" type="Button" parent="Output"]
-margin_top = 690.0
+margin_top = 379.0
 margin_right = 300.0
-margin_bottom = 720.0
+margin_bottom = 409.0
 custom_fonts/font = ExtResource( 1 )
 toggle_mode = true
 text = "AUTO ADVANCE"
+
+[node name="Auto Advance Speed" type="HScrollBar" parent="Output"]
+margin_top = 413.0
+margin_right = 300.0
+margin_bottom = 564.0
+size_flags_vertical = 3
+max_value = 30.0
+step = 5.0
+value = 5.0
+rounded = true
+
+[node name="Auto Advance Progress" type="ProgressBar" parent="Output"]
+margin_top = 568.0
+margin_right = 300.0
+margin_bottom = 720.0
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0, 0, 0, 0 )
+max_value = 1.0
 
 [connection signal="pressed" from="Tabs/Main/Buttons/New Company" to="." method="_on_New_Company_pressed"]
 [connection signal="pressed" from="Tabs/Main/Buttons/Take Loan" to="." method="_on_Take_Loan_pressed"]
@@ -114,3 +132,4 @@ text = "AUTO ADVANCE"
 [connection signal="pressed" from="Output/Next Day" to="." method="_on_Next_Day_pressed"]
 [connection signal="pressed" from="Output/Next Month" to="." method="_on_Next_Month_pressed"]
 [connection signal="toggled" from="Output/Auto Advance" to="." method="_on_Auto_Advance_toggled"]
+[connection signal="value_changed" from="Output/Auto Advance Speed" to="." method="_on_HScrollBar_value_changed"]
