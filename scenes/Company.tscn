@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/Company.gd" type="Script" id=1]
-[ext_resource path="res://res/Font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://res/ButtonFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://res/Player Buttons.tres" type="ButtonGroup" id=3]
 
 [node name="Company" type="VBoxContainer"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://res/Font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://res/ButtonFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://res/TextFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scripts/Game.gd" type="Script" id=4]
 
 [node name="Game" type="HBoxContainer"]
@@ -11,14 +12,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Company Tabs" type="TabContainer" parent="."]
+[node name="Tabs" type="TabContainer" parent="."]
 margin_right = 976.0
 margin_bottom = 720.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
-drag_to_rearrange_enabled = true
 
-[node name="Game" type="HBoxContainer" parent="Company Tabs"]
+[node name="Main" type="VBoxContainer" parent="Tabs"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -26,11 +26,38 @@ margin_top = 42.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="New Company" type="Button" parent="Company Tabs/Game"]
-margin_right = 103.0
-margin_bottom = 20.0
+[node name="Buttons" type="HBoxContainer" parent="Tabs/Main"]
+margin_right = 968.0
+margin_bottom = 30.0
+
+[node name="New Company" type="Button" parent="Tabs/Main/Buttons"]
+margin_right = 147.0
+margin_bottom = 30.0
 size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
 text = "New Company"
+
+[node name="Take Loan" type="Button" parent="Tabs/Main/Buttons"]
+margin_left = 151.0
+margin_right = 255.0
+margin_bottom = 30.0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Take Loan"
+
+[node name="Repay Loan" type="Button" parent="Tabs/Main/Buttons"]
+margin_left = 259.0
+margin_right = 377.0
+margin_bottom = 30.0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Repay Loan"
+
+[node name="Info" type="Label" parent="Tabs/Main"]
+margin_top = 34.0
+margin_right = 968.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 2 )
 
 [node name="Output" type="VBoxContainer" parent="."]
 margin_left = 980.0
@@ -39,23 +66,51 @@ margin_bottom = 720.0
 
 [node name="Main" type="ScrollContainer" parent="Output"]
 margin_right = 300.0
-margin_bottom = 358.0
+margin_bottom = 307.0
 size_flags_vertical = 3
 
 [node name="Text" type="Label" parent="Output/Main"]
 margin_right = 300.0
-margin_bottom = 358.0
+margin_bottom = 307.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+autowrap = true
 
 [node name="Info" type="Label" parent="Output"]
-margin_top = 362.0
+margin_top = 311.0
 margin_right = 300.0
-margin_bottom = 720.0
+margin_bottom = 618.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
 
-[connection signal="pressed" from="Company Tabs/Game/New Company" to="." method="_on_New_Company_pressed"]
+[node name="Next Day" type="Button" parent="Output"]
+margin_top = 622.0
+margin_right = 300.0
+margin_bottom = 652.0
+custom_fonts/font = ExtResource( 1 )
+text = "NEXT DAY"
+
+[node name="Next Month" type="Button" parent="Output"]
+margin_top = 656.0
+margin_right = 300.0
+margin_bottom = 686.0
+custom_fonts/font = ExtResource( 1 )
+text = "NEXT MONTH"
+
+[node name="Auto Advance" type="Button" parent="Output"]
+margin_top = 690.0
+margin_right = 300.0
+margin_bottom = 720.0
+custom_fonts/font = ExtResource( 1 )
+toggle_mode = true
+text = "AUTO ADVANCE"
+
+[connection signal="pressed" from="Tabs/Main/Buttons/New Company" to="." method="_on_New_Company_pressed"]
+[connection signal="pressed" from="Tabs/Main/Buttons/Take Loan" to="." method="_on_Take_Loan_pressed"]
+[connection signal="pressed" from="Tabs/Main/Buttons/Repay Loan" to="." method="_on_Repay_Loan_pressed"]
+[connection signal="pressed" from="Output/Next Day" to="." method="_on_Next_Day_pressed"]
+[connection signal="pressed" from="Output/Next Month" to="." method="_on_Next_Month_pressed"]
+[connection signal="toggled" from="Output/Auto Advance" to="." method="_on_Auto_Advance_toggled"]

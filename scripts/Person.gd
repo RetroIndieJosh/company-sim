@@ -11,26 +11,6 @@ const MONEY_MIN = 100
 const MONEY_MAX = 10000
 const MONEY_RANGE = MONEY_MAX - MONEY_MIN
 
-enum Degree {
-        BACHELOR,
-        MASTER,
-        TERMINAL,
-        COUNT
-}
-
-var age: int
-
-var degree: int
-var personality: int
-var specialization: int
-
-var happiness: float
-var efficiency: float
-
-var company: Node
-var money: int
-var salary: int
-
 const CONSONANTS = ["r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r",
 "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r",
 "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "t", "t", "t", "t", "t",
@@ -66,9 +46,31 @@ const VOWELS = ["e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e",
 "o", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u", "u",
 "u", "u", "u", "y", "y", "y"]
 
+enum Degree {
+        BACHELOR,
+        MASTER,
+        TERMINAL,
+        COUNT
+}
+
+var age: int
+
+var degree: int
+var personality: int
+var specialization: int
+
+var happiness: float
+var efficiency: float
+
+var company: Node = null
+var money: int
+var salary: int
+
+var days_worked: int = 0
+
+onready var game = $"../.."
 
 func _init():
-        company = null
         age = randi() % AGE_RANGE + AGE_MIN
         degree = randi() % Degree.COUNT
         personality = randi() % PERSONALITY_MAX
@@ -116,9 +118,13 @@ func hire(comp, sal):
 func is_employed():
         return company != null
 
-func update():
+func update() -> String:
         if not is_employed():
-                return
-        var earnings = int(salary / 365.0) 
+                return ""
+        days_worked += 1
+        if days_worked % 14 != 0:
+                return ""
+        var earnings = int(salary / 26.0)
         money += earnings
         company.work(efficiency, earnings)
+        return "Paid $%d to %s from company %s" % [earnings, name, company.name]

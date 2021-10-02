@@ -1,0 +1,12 @@
+- determine self salary per company, place in game money
+- decide how much capital to put into company (autoloan if not enough?) 
+- set salary on hire
+- severance package on fire
+- whole happiness/personality/specialization system
+- get money from amount of work (sell at threshold, money to company)
+- promotion and in-company work levels
+- set auto advance speed (scrollbar? or +/-)
+- handle negative money in player
+- handle negative money in company (can't pay employees, quit? bankruptcy)
+- manually liquidate company (sell all "work" at lesser amount)
+- various data: profit per quarter (per company and total), employees sorted by salary/happiness

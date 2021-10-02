@@ -28,7 +28,6 @@ func _process(_delta):
         update_company_info()
 
 func _ready():
-        money = randi() % MONEY_RANGE + MONEY_MIN
         if game == null:
                 print("ERROR no game")
         #game.display_print("New company!")
@@ -64,18 +63,14 @@ func _on_Person_Selector_item_selected(index):
                 remove_child(person)
                 game.display_print("Fired " + person.name)
         elif action == Action.HIRE:
-                person.hire(self, 100000)
+                var salary = money * 0.1
+                person.hire(self, salary)
                 add_child(person)
-                game.display_print("Hired " + person.name)
+                game.display_print("Hired " + person.name + " with salary $" + str(salary))
         elif action == Action.PROMOTE:
                 game.display_print("Promoted " + person.name)
         game.show_person(person)
         update_list()
-
-func update_employees():
-        for c in get_children():
-                if c is Person:
-                        c.update()
 
 func update_company_info():
         if info_company == null:
