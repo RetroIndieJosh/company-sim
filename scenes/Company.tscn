@@ -1,0 +1,112 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/Company.gd" type="Script" id=1]
+[ext_resource path="res://res/Font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://res/Player Buttons.tres" type="ButtonGroup" id=3]
+
+[node name="Company" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 42.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+margin_right = 1272.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="Button" parent="Buttons"]
+margin_right = 238.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "Info"
+
+[node name="Hire" type="Button" parent="Buttons"]
+margin_left = 258.0
+margin_right = 496.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "Hire"
+
+[node name="Fire" type="Button" parent="Buttons"]
+margin_left = 516.0
+margin_right = 755.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "Fire"
+
+[node name="Promote" type="Button" parent="Buttons"]
+margin_left = 775.0
+margin_right = 1013.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "Promote"
+
+[node name="Step Down as CEO" type="Button" parent="Buttons"]
+margin_left = 1033.0
+margin_right = 1272.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = true
+group = ExtResource( 3 )
+text = "Step Down as CEO"
+
+[node name="Info" type="HBoxContainer" parent="."]
+margin_top = 34.0
+margin_right = 1272.0
+margin_bottom = 674.0
+size_flags_vertical = 3
+
+[node name="Employees" type="Label" parent="Info"]
+margin_right = 482.0
+margin_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Company" type="Label" parent="Info"]
+margin_left = 486.0
+margin_right = 968.0
+margin_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Person Selector" type="ItemList" parent="Info"]
+margin_left = 972.0
+margin_right = 1272.0
+margin_bottom = 640.0
+rect_min_size = Vector2( 300, 0 )
+custom_fonts/font = ExtResource( 2 )
+
+[connection signal="pressed" from="Buttons/Info" to="." method="_on_Info_pressed"]
+[connection signal="pressed" from="Buttons/Hire" to="." method="_on_Hire_pressed"]
+[connection signal="pressed" from="Buttons/Fire" to="." method="_on_Fire_pressed"]
+[connection signal="pressed" from="Buttons/Promote" to="." method="_on_Promote_pressed"]
+[connection signal="pressed" from="Buttons/Step Down as CEO" to="." method="_on_Step_Down_as_CEO_pressed"]
+[connection signal="item_selected" from="Info/Person Selector" to="." method="_on_Person_Selector_item_selected"]
